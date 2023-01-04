@@ -6,7 +6,6 @@ public:
         
         vector<int> v;
         for(auto i:m)v.push_back(i.second);
-        sort(v.begin(), v.end());
         
         int ans = 0;
         for(int i=v.size()-1; i>=0; )
