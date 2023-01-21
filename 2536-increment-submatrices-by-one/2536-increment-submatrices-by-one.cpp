@@ -20,7 +20,7 @@ public:
         {
             for(int j=1; j<n; j++)
             {
-                ans[i][j]+=ans[i][j-1];
+                ans[i][j] += ans[i][j-1];
             }
         }
         
@@ -28,9 +28,10 @@ public:
         {
             for(int j=0; j<n; j++)
             {
-                ans[i][j]+=ans[i-1][j];
+                ans[i][j] += ans[i-1][j];
             }
         }
+        
         return ans;
     }
 };
