@@ -13,7 +13,7 @@ public:
         vector<vector<int>> ans;
         int start = -1, end = -1;
         
-        for(auto &i:s)
+        for(auto i:s)
         {
             if(end==-1)
             {
@@ -32,10 +32,7 @@ public:
             }
         }
         
-        if(start!=-1)
-        {
-            ans.push_back({start, end});
-        }
+        if(start!=-1)ans.push_back({start, end});
         
         return ans;
     }
