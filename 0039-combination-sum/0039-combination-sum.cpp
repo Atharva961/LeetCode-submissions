@@ -1,32 +1,24 @@
 class Solution {
 public:
     set<vector<int>> s;
-    void solve(vector<int>& v, int index, int sum, vector<int>& temp, int target)
+    void solve(vector<int>& candidates, int target, vector<int>& v, int index, int sum)
     {
-        if(sum>target)return;
+        if(index==candidates.size())return;
         if(sum==target)
         {
-            // cout<<sum<<endl;
-            s.insert(temp);
+            s.insert(v);
             return;
         }
-        if(index>=v.size())return;
-        
-        //include
-        vector<int> pass = temp;
-        pass.push_back(v[index]);
-        
-        solve(v, index, sum+v[index], pass, target);
-        
-        //exclude
-        solve(v, index+1, sum, temp, target);
-    
+        if(sum>target)return;
+        vector<int> inc = v;
+        inc.push_back(candidates[index]);
+        solve(candidates, target, inc, index, sum+candidates[index]);
+        solve(candidates, target, v, index+1, sum);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<int> temp;
-        solve(candidates, 0, 0, temp, target);
+        vector<int> v;
+        solve(candidates, target, v, 0, 0);
         vector<vector<int>> ans(s.begin(), s.end());
-        
         return ans;
     }
 };
