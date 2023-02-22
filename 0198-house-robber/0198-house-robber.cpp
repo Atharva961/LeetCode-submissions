@@ -2,14 +2,17 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         vector<int> dp(nums.size()+2, 0);
+        int i2 = 0, i1 = 0, i0 = 0;
         
         for(int i=nums.size()-1; i>=0; i--)
         {
-            int rob = nums[i] + dp[i+2];
-            int ignore = dp[i+1];
-            dp[i] = max(rob, ignore);
+            int rob = nums[i] + i2;
+            int ignore = i1;
+            i0 = max(rob, ignore);
+            i2 = i1;
+            i1 = i0;
         }
         
-        return dp[0];
+        return i0;
     }
 };
