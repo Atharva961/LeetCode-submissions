@@ -1,7 +1,6 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size()+2, 0);
         int i2 = 0, i1 = 0, i0 = 0;
         
         for(int i=nums.size()-1; i>=0; i--)
