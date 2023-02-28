@@ -3,19 +3,20 @@ public:
     int trap(vector<int>& v) {
         int beg = 0, end = v.size()-1;
         int ans = 0;
-        int mleft = 0, mright = 0;
+        int mbeg = 0, mend = 0;
+        
         while(beg<=end)
         {
             if(v[beg]<=v[end])
             {
-                mleft = max(mleft, v[beg]);
-                ans+=(mleft-v[beg]);
+                mbeg = max(v[beg], mbeg);
+                ans+=(mbeg-v[beg]);
                 beg++;
             }
             else
             {
-                mright = max(mright, v[end]);
-                ans+=(mright-v[end]);
+                mend = max(v[end], mend);
+                ans+=(mend-v[end]);
                 end--;
             }
         }
