@@ -1,7 +1,6 @@
 class Solution {
 public:
     int minReorder(int n, vector<vector<int>>& arr) {
-        // sort(arr.begin(), arr.end());
         set<vector<int>> s(arr.begin(), arr.end());
         vector<vector<int>> adj(n);
         for(auto i:arr)
