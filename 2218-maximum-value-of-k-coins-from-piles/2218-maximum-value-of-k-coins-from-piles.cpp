@@ -1,19 +1,23 @@
 class Solution {
 public:
-    int solve(int i, int k, vector<vector<int>>& piles, vector<vector<int>>& dp)
+    vector<vector<int>> dp;
+    int solve(vector<vector<int>>& piles, int index, int k)
     {
-        if (dp[i][k] > 0) return dp[i][k];
-        if (i == piles.size() || k == 0) return 0;
-        int ans = solve(i + 1, k, piles, dp), cur = 0;
-        for (int j = 0; j < piles[i].size() && j < k; ++j) {
-            cur += piles[i][j];
-            ans = max(ans, solve(i + 1, k - j - 1, piles, dp) + cur);
+        if(index==piles.size() || k==0)return 0;
+        if(dp[index][k]!=-1)return dp[index][k];
+        int ans = solve(piles, index+1, k);
+        
+        int sum = 0;
+        for(int j=0; j<piles[index].size() && j<k; j++)
+        {
+            sum+=piles[index][j];
+            ans = max(ans, sum + solve(piles, index+1, k-j-1));
         }
-        dp[i][k] = ans;
-        return ans;
+        
+        return dp[index][k] = ans;
     }
     int maxValueOfCoins(vector<vector<int>>& piles, int k) {
-        vector<vector<int>> dp(piles.size()+1, vector<int>(k+1, -1));
-        return solve( 0, k,piles, dp);
+        dp = vector<vector<int>>(piles.size()+1, vector<int>(k+1, -1));
+        return solve(piles, 0, k);
     }
 };
